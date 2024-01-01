@@ -8,8 +8,8 @@ export default function ProvideUs({ children }: { children: ReactNode }) {
             mode="payment"
             cartMode="client-only"
             stripe={process.env.NEXT_PUBLIC_STRIPE_KEY as string}
-            successUrl="http://localhost:3000/stripe/success"
-            cancelUrl="http://localhost:3000/stripe/error"
+            successUrl="https://e-commerce-app-omega-ten.vercel.app/stripe/success"
+            cancelUrl="https://e-commerce-app-omega-ten.vercel.app/stripe/error"
             currency="INR"
             billingAddressCollection={true}
             shouldPersist={true}

@@ -9,7 +9,7 @@ import { ProductCart } from "./AddToBag";
 export default function CheckoutNow({ currency, description, price, name, image, price_id }: ProductCart) {
     const { checkoutSingleItem } = useShoppingCart();
 
-    function buyNow(priceID: string){
+    function buyNow(priceID: string) {
         checkoutSingleItem(priceID)
     }
 
@@ -23,9 +23,9 @@ export default function CheckoutNow({ currency, description, price, name, image,
     }
 
     return (
-        <Button onClick={() => {
+        <Button variant={"outline"} onClick={() => {
             buyNow(product.price_id)
-        }}>Add to Cart
+        }}>Checkout Now
         </Button>
     )
 }

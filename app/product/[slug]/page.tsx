@@ -1,4 +1,5 @@
 import AddToBag from "@/app/components/AddToBag";
+import CheckoutNow from "@/app/components/CheckoutNow";
 import ImageGallery from "@/app/components/imageGallery";
 import { fullProduct } from "@/app/interface";
 import { client } from "@/app/lib/sanity";
@@ -23,6 +24,7 @@ async function getData(slug: string) {
     return data;
 }
 
+export const dynamic = 'force-dynamic';
 
 export default async function ProductPage({ params }: { params: { slug: string } }) {
 
@@ -64,9 +66,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
                         </div>
                         <div className="flex gap-2.5">
                             <AddToBag currency="INR" description={data.description} image={data.images[0]} name={data.name} price={data.price} price_id={data.price_id}/>
-                            <Button variant={"secondary"}>
-                                Checkout now
-                            </Button>
+                            <CheckoutNow currency="INR" description={data.description} image={data.images[0]} name={data.name} price={data.price} price_id={data.price_id}/>
                         </div>
                         <p className="mt-12 max-h-32 text-base text-gray-500 tracking-wide overflow-hidden">{data.description}</p>
                     </div>
