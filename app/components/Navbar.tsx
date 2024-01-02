@@ -1,10 +1,11 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { ShoppingBag } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useShoppingCart } from "use-shopping-cart";
+
 
 const links = [
     { name: 'Home', href: '/' },
@@ -42,7 +43,7 @@ export default function Navbar() {
                     <Button
                         onClick={() => handleCartClick()}
                         variant={"outline"} className="flex flex-col gap-y-1.5 h-12 w-12 sm:h-20 md:h-24 md:w-24 rounded-none">
-                        <ShoppingBag />
+                        <ShoppingCart />
                         <span className="hidden text-xs font-semibold text-gray-500 sm:block">
                             Cart
                         </span>

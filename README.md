@@ -35,4 +35,5 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
- Studio deployed to https://art-gallery-app.sanity.studio/
+ Backend - Studio deployed to https://art-gallery-app.sanity.studio/
+ Deployed at - https://vercel.com/siddhartha-kumars-projects-4f0b979e/e-commerce-app
