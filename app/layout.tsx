@@ -4,6 +4,7 @@ import './globals.css'
 import Navbar from './components/Navbar'
 import ProvideUs from './components/Provideus'
 import ShoppingCartModal from './components/ShoppingCartModel'
+import Footer from './components/Footer'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -25,6 +26,7 @@ export default function RootLayout({
           <Navbar />
           <ShoppingCartModal/>
           {children}
+          <Footer/>
         </ProvideUs>
       </body>
     </html>

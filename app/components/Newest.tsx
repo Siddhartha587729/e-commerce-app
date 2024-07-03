@@ -4,6 +4,7 @@ import { client } from "../lib/sanity"
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 
+
 async function getData() {
     const query = `*[_type=='product'] | order(_createdAt desc)[0...4]{
         _id,name,price,"slug":slug.current,
@@ -21,39 +22,51 @@ export default async function Newest() {
 
     return (
         <div className="bg-white">
-            <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+            <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
                 <div className="flex justify-between items-center">
-                    <h2 className="text-2xl font-bold tracking-tight text-gray-900">Our newest arivals</h2>
-                    <Link href="/all" className="text-primary flex items-center gap-x-1" >
+                    <div className="py-5 flex gap-2 items-center">
+                        <div className="bg-[#F4538A] h-9 w-3"></div>
+                        <span className="text-[#F4538A]">Newest arivals</span>
+                    </div>
+
+                    <Link href="/display" className="shadow-xl flex items-center gap-x-1 bg-[#F5DD61] p-2 rounded-3xl hover:scale-105" >
                         see all <span><ArrowRight /></span>
                     </Link>
                 </div>
-                <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+                <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
                     {data.map((product) => (
-                        <div key={product._id} className="group relative">
-                            <div className="aspect-square w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:h-80">
-                                <Image
-                                    src={product.imageUrl}
-                                    alt="Product image"
-                                    className="w-full h-full object-center object-cover lg:h-full lg:w-full"
-                                    width={300}
-                                    height={300}
-                                />
+                        <div key={product._id} className="group relative rounded-xl flex flex-col p-2 gap-2">
+                            <div className="h-2/3 aspect-square w-full overflow-hidden rounded-md bg-[#cdf0f3] p-1 group-hover:scale-105 hover:cursor-pointer transition-transform">
+                                <Link href={`/product/${product.slug}`}>
+                                    <Image
+                                        src={product.imageUrl}
+                                        alt="Product image"
+                                        className="w-full h-full object-center object-cover lg:h-full lg:w-full rounded-md"
+                                        width={100}
+                                        height={100}
+                                    />
+                                </Link>
                             </div>
-                            <div className="mt-4 flex justify-between">
-                                <div >
-                                    <h3 className="text-sm text-gray-700">
+                            <div className="h-1/3 flex flex-col px-2">
+                                <div>
+                                    <h3 className="text-lg font-bold">
                                         <Link href={`/product/${product.slug}`}>
                                             {product.name}
                                         </Link>
                                     </h3>
-                                    <p className="mt-1 text-sm text-gray-500">{product.categoryName}</p>
+                                    <p className="text-sm text-gray-400">
+                                        Category: <span className="text-gray-600">{product.categoryName}</span>
+                                    </p>
+                                </div>
+                                <div className="flex gap-2">
+                                    <span className="text-sm font-medium text-gray-900">₹{product.price}</span>
+                                    <span className="text-sm font-medium text-red-500 line-through">₹{(product.price * 1.8).toFixed(2)}</span>
                                 </div>
                             </div>
-                            <p className="text-sm font-medium text-gray-900">₹{product.price}</p>
                         </div>
                     ))}
                 </div>
+
             </div>
         </div>
     )

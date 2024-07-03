@@ -7,6 +7,7 @@ const nextConfig = {
             hostname: "cdn.sanity.io**",
           },
         ],
+        domains: ['avatars.githubusercontent.com'],
       },
 }
 

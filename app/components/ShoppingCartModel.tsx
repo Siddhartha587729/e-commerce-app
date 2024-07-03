@@ -8,22 +8,26 @@ import {
 } from "@/components/ui/sheet";
 import Image from "next/image";
 import { useShoppingCart } from "use-shopping-cart";
+import { useSession, signIn } from "next-auth/react"
+import Link from "next/link";
 
 export default function ShoppingCartModal() {
+    const { data: session } = useSession();
+    /*console.log(session) */
     const { cartCount, shouldDisplayCart, handleCartClick, cartDetails, removeItem, totalPrice, redirectToCheckout } = useShoppingCart();
 
     async function handleCheckoutClick(event: any) {
         event.preventDefault();
         try {
             const result = await redirectToCheckout();
-            if(result?.error){
+            if (result?.error) {
                 console.log('result')
             }
         }
-        catch(error){
+        catch (error) {
             console.log(error);
         }
-        
+
     }
 
     return (
@@ -75,9 +79,17 @@ export default function ShoppingCartModal() {
                         </div>
                         <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes are calculated at checkout.</p>
                         <div className="mt-6">
-                            <Button onClick={handleCheckoutClick} className="w-full">
-                                Checkout
-                            </Button>
+                            {session ? (
+                                <Button onClick={handleCheckoutClick} className="w-full">
+                                    Checkout
+                                </Button>
+
+                            ) : (
+                                <div className="flex items-center justify-center">
+                                    <div onClick={() => signIn()} className="text-[#F4538A] mx-2 hover:cursor-pointer hover:scale-105">Login</div>to continue
+                                </div>
+                            )}
+
                         </div>
                         <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                             <p>
